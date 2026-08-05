@@ -87,3 +87,16 @@ export async function resetPassword(formData: FormData) {
 
   redirect('/forgot-password?success=Check your email for the password reset link.')
 }
+
+export async function updatePassword(formData: FormData) {
+  const supabase = await createClient()
+  const password = formData.get('password') as string
+
+  const { error } = await supabase.auth.updateUser({ password })
+
+  if (error) {
+    redirect(`/portal/update-password?message=${encodeURIComponent(error.message)}`)
+  }
+
+  redirect('/portal')
+}

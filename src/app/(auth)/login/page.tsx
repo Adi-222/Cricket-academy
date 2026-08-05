@@ -1,6 +1,6 @@
 import { login, signup } from '../actions'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { SubmitButton } from '@/components/auth/SubmitButton'
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ message?: string, tab?: string }> }) {
   const params = await searchParams;
@@ -49,10 +49,22 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
             </div>
           </div>
 
+          {!isSignup && (
+            <div className="flex items-center justify-end">
+              <div className="text-sm">
+                <Link href="/forgot-password" className="font-medium text-primary hover:text-primary/80">
+                  Forgot your password?
+                </Link>
+              </div>
+            </div>
+          )}
+
           <div>
-            <Button type="submit" className="w-full py-6 text-lg">
-              {isSignup ? 'Sign Up' : 'Log In'}
-            </Button>
+            <SubmitButton 
+              className="w-full py-6 text-lg" 
+              defaultText={isSignup ? 'Sign Up' : 'Log In'} 
+              loadingText={isSignup ? 'Signing Up...' : 'Logging In...'} 
+            />
           </div>
           
           <div className="text-center mt-6">

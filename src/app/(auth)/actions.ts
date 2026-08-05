@@ -15,7 +15,7 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data)
 
   if (error) {
-    redirect('/login?message=Could not authenticate user')
+    redirect(`/login?message=${encodeURIComponent(error.message)}`)
   }
 
   revalidatePath('/', 'layout')
@@ -54,7 +54,7 @@ export async function signup(formData: FormData) {
   const { error } = await supabase.auth.signUp(data)
 
   if (error) {
-    redirect('/login?tab=signup&message=Could not authenticate user')
+    redirect(`/login?tab=signup&message=${encodeURIComponent(error.message)}`)
   }
 
   revalidatePath('/', 'layout')
@@ -65,4 +65,25 @@ export async function logout() {
     const supabase = await createClient()
     await supabase.auth.signOut()
     redirect('/')
+}
+
+export async function resetPassword(formData: FormData) {
+  const supabase = await createClient()
+  const email = formData.get('email') as string
+
+  // We assume the application is running on localhost or a known domain
+  // In a real app, this should be an environment variable
+  const callbackUrl = process.env.NEXT_PUBLIC_SITE_URL 
+    ? `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback` 
+    : 'http://localhost:3000/auth/callback'
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${callbackUrl}?next=/portal/update-password`,
+  })
+
+  if (error) {
+    redirect(`/forgot-password?message=${encodeURIComponent(error.message)}`)
+  }
+
+  redirect('/forgot-password?success=Check your email for the password reset link.')
 }

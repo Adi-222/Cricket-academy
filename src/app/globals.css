@@ -95,6 +95,11 @@
   @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-crimson focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-shadow;
 }
 
+/* Force hide Next.js Dev Indicator in case next.config.ts is ignored by Turbopack */
+nextjs-portal, [data-nextjs-toast] {
+  display: none !important;
+}
+
 /* Component utilities */
 @utility card-dossier {
   @apply bg-white border border-pitch rounded-lg shadow-sm hover:shadow-md transition-shadow;

@@ -1,55 +1,101 @@
 import { Button } from "@/components/ui/button"
+import { MapPin, Phone, Mail } from "lucide-react"
 
 export default function Contact() {
   return (
-    <div className="pt-24 pb-16 min-h-screen">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <h1 className="text-4xl md:text-5xl font-bold mb-12 text-center text-glow">Contact Us</h1>
+    <div className="bg-background min-h-screen">
+      <div className="container mx-auto px-4 max-w-6xl py-24">
+        <div className="mb-16 border-b border-slate/10 pb-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-heading text-slate uppercase mb-4">Contact Us</h1>
+          <p className="text-xl font-sans text-muted-foreground max-w-2xl mx-auto">Get in touch with our admissions office or technical support team.</p>
+        </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="glass-dark p-8 rounded-3xl border border-white/10">
-            <h2 className="text-2xl font-bold mb-6">Send an Enquiry</h2>
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-1">Name</label>
-                <input type="text" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">Email</label>
-                <input type="email" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">Message</label>
-                <textarea rows={4} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary"></textarea>
-              </div>
-              <Button type="button" className="w-full">Submit</Button>
-            </form>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+          {/* Info Side */}
+          <div className="lg:col-span-2 space-y-8">
+            <div className="card-dossier p-8 border-t-4 border-t-eden">
+              <h2 className="text-2xl font-heading text-slate uppercase mb-6">Headquarters</h2>
+              
+              <div className="space-y-6">
+                <div className="flex gap-4">
+                  <div className="mt-1 w-8 h-8 rounded-full bg-eden/10 flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4 text-eden" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading uppercase text-sm text-slate tracking-wider mb-1">Address</h3>
+                    <address className="not-italic text-muted-foreground font-sans text-sm">
+                      123 Stadium Road<br/>
+                      Salt Lake City, Kolkata<br/>
+                      West Bengal, 700098
+                    </address>
+                  </div>
+                </div>
 
-          {/* Info */}
-          <div className="space-y-8">
-            <div className="glass p-8 rounded-3xl border border-white/10">
-              <h2 className="text-2xl font-bold mb-4">Headquarters</h2>
-              <address className="not-italic text-zinc-300 space-y-2">
-                <p>123 Stadium Road</p>
-                <p>Salt Lake City, Kolkata</p>
-                <p>West Bengal, 700098</p>
-              </address>
-              <div className="mt-6 space-y-2 text-zinc-300">
-                <p><strong>Phone:</strong> +91 98765 43210</p>
-                <p><strong>Email:</strong> info@cricketacademy.com</p>
+                <div className="flex gap-4">
+                  <div className="mt-1 w-8 h-8 rounded-full bg-eden/10 flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4 text-eden" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading uppercase text-sm text-slate tracking-wider mb-1">Phone</h3>
+                    <p className="text-muted-foreground font-sans text-sm">+91 98765 43210</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="mt-1 w-8 h-8 rounded-full bg-eden/10 flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4 text-eden" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading uppercase text-sm text-slate tracking-wider mb-1">Email</h3>
+                    <p className="text-muted-foreground font-sans text-sm">admissions@cricketacademy.com</p>
+                  </div>
+                </div>
               </div>
             </div>
             
-            <div className="glass p-8 rounded-3xl border border-white/10 flex flex-col justify-center items-center text-center">
-              <h2 className="text-2xl font-bold mb-4">WhatsApp Us</h2>
-              <p className="text-zinc-400 mb-6">Get instant replies to your queries during working hours.</p>
+            <div className="card-dossier p-8 text-center bg-[#25D366]/5 border-[#25D366]/20">
+              <h2 className="text-2xl font-heading text-[#25D366] uppercase mb-4">WhatsApp Us</h2>
+              <p className="text-slate/70 mb-6 font-sans text-sm">Get instant replies to your queries during working hours (9 AM - 6 PM IST).</p>
               <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="gap-2 bg-[#25D366] text-white hover:bg-[#25D366]/90 hover:text-white border-0">
+                <Button className="w-full gap-2 bg-[#25D366] text-white hover:bg-[#25D366]/90 font-heading uppercase tracking-widest rounded-sm">
                   Chat on WhatsApp
                 </Button>
               </a>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="lg:col-span-3">
+            <div className="card-dossier p-8 border-t-4 border-t-crimson">
+              <h2 className="text-2xl font-heading text-slate uppercase mb-2">Send an Enquiry</h2>
+              <p className="text-muted-foreground mb-8 font-sans text-sm">We aim to respond to all email enquiries within 24 hours.</p>
+              
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="block text-xs font-heading tracking-widest uppercase text-slate/70">First Name</label>
+                    <input type="text" className="w-full bg-chalk border border-slate/10 rounded-sm px-4 py-3 text-slate font-sans focus:outline-none focus:border-crimson focus:ring-1 focus:ring-crimson transition-shadow" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block text-xs font-heading tracking-widest uppercase text-slate/70">Last Name</label>
+                    <input type="text" className="w-full bg-chalk border border-slate/10 rounded-sm px-4 py-3 text-slate font-sans focus:outline-none focus:border-crimson focus:ring-1 focus:ring-crimson transition-shadow" />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="block text-xs font-heading tracking-widest uppercase text-slate/70">Email Address</label>
+                  <input type="email" className="w-full bg-chalk border border-slate/10 rounded-sm px-4 py-3 text-slate font-sans focus:outline-none focus:border-crimson focus:ring-1 focus:ring-crimson transition-shadow" />
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="block text-xs font-heading tracking-widest uppercase text-slate/70">Message</label>
+                  <textarea rows={5} className="w-full bg-chalk border border-slate/10 rounded-sm px-4 py-3 text-slate font-sans focus:outline-none focus:border-crimson focus:ring-1 focus:ring-crimson transition-shadow resize-none"></textarea>
+                </div>
+                
+                <Button type="button" className="w-full py-6 bg-slate hover:bg-slate/90 text-white font-heading uppercase tracking-widest rounded-sm text-lg">
+                  Submit Enquiry
+                </Button>
+              </form>
             </div>
           </div>
         </div>

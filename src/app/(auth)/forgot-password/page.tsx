@@ -6,27 +6,27 @@ export default async function ForgotPasswordPage({ searchParams }: { searchParam
   const params = await searchParams;
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-950">
-      <div className="max-w-md w-full space-y-8 glass p-8 rounded-3xl border border-white/10">
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-pitch">
+      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-sm shadow-sm border-t-4 border-t-crimson">
         <div>
           <Link href="/" className="flex justify-center mb-6">
-            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-2xl">
+            <div className="w-14 h-14 rounded-full bg-slate flex items-center justify-center text-white font-heading text-2xl tracking-wider">
               CA
             </div>
           </Link>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
-            Reset Password
+          <h2 className="mt-6 text-center text-3xl font-heading text-slate uppercase tracking-wide">
+            Password Reset
           </h2>
-          <p className="mt-2 text-center text-sm text-zinc-400">
-            Enter your email address and we will send you a link to reset your password.
+          <p className="mt-2 text-center text-sm font-sans text-slate/70">
+            Enter your email address to receive a secure reset link.
           </p>
           {params?.message && (
-            <p className="mt-4 text-center text-sm text-red-500 bg-red-500/10 p-3 rounded-lg border border-red-500/20">
+            <p className="mt-4 text-center text-sm font-sans text-crimson bg-crimson/10 p-3 rounded-sm border border-crimson/20">
               {params.message}
             </p>
           )}
           {params?.success && (
-            <p className="mt-4 text-center text-sm text-green-500 bg-green-500/10 p-3 rounded-lg border border-green-500/20">
+            <p className="mt-4 text-center text-sm font-sans text-eden bg-eden/10 p-3 rounded-sm border border-eden/20">
               {params.success}
             </p>
           )}
@@ -34,16 +34,16 @@ export default async function ForgotPasswordPage({ searchParams }: { searchParam
         
         {!params?.success && (
           <form className="mt-8 space-y-6" action={resetPassword}>
-            <div className="rounded-md shadow-sm space-y-4">
-              <div>
-                <label htmlFor="email-address" className="sr-only">Email address</label>
-                <input id="email-address" name="email" type="email" autoComplete="email" required className="appearance-none rounded-lg relative block w-full px-4 py-3 border border-white/10 bg-white/5 text-white focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" placeholder="Email address" />
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <label htmlFor="email-address" className="block text-xs font-heading tracking-widest uppercase text-slate/70">Email Address</label>
+                <input id="email-address" name="email" type="email" autoComplete="email" required className="appearance-none rounded-sm relative block w-full px-4 py-3 border border-slate/20 bg-chalk text-slate focus:outline-none focus:ring-1 focus:ring-crimson focus:border-crimson sm:text-sm font-sans" placeholder="parent@example.com" />
               </div>
             </div>
 
             <div>
               <SubmitButton 
-                className="w-full py-6 text-lg" 
+                className="w-full py-6 text-lg bg-crimson hover:bg-crimson/90 text-white font-heading uppercase tracking-widest rounded-sm" 
                 defaultText="Send Reset Link" 
                 loadingText="Sending..." 
               />
@@ -51,9 +51,9 @@ export default async function ForgotPasswordPage({ searchParams }: { searchParam
           </form>
         )}
 
-        <div className="text-center mt-6">
-            <p className="text-sm text-zinc-400">
-              <Link href="/login" className="text-primary hover:underline">Return to log in</Link>
+        <div className="text-center mt-6 pt-6 border-t border-slate/10">
+            <p className="text-sm font-sans text-slate/70">
+              <Link href="/login" className="text-crimson font-medium hover:underline">Return to log in</Link>
             </p>
         </div>
       </div>

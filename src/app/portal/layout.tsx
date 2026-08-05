@@ -19,26 +19,28 @@ export default async function PortalLayout({ children }: { children: React.React
     .single()
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex flex-col">
-      <header className="bg-zinc-900 border-b border-white/10 sticky top-0 z-40">
+    <div className="min-h-screen bg-background flex flex-col">
+      <header className="bg-white border-b border-slate/10 sticky top-0 z-40 shadow-sm">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href="/portal" className="text-xl font-bold text-white flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm">
+            <Link href="/portal" className="text-xl font-heading text-slate uppercase flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-crimson flex items-center justify-center text-white text-sm tracking-wider">
                 CA
               </div>
               Student Portal
             </Link>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-zinc-400 text-sm hidden sm:block">Welcome, {profile?.full_name || user.email}</span>
+          <div className="flex items-center gap-6">
+            <span className="text-slate/60 text-sm hidden sm:block font-sans">
+              Parent: <strong className="text-slate">{profile?.full_name || user.email}</strong>
+            </span>
             <form action={logout}>
-              <Button variant="ghost" size="sm" type="submit">Sign Out</Button>
+              <Button variant="ghost" size="sm" type="submit" className="text-crimson hover:text-crimson/80 hover:bg-crimson/10 font-heading uppercase tracking-widest text-xs">Sign Out</Button>
             </form>
           </div>
         </div>
       </header>
-      <main className="flex-1 container mx-auto px-4 py-8">
+      <main className="flex-1 container mx-auto px-4 py-12">
         {children}
       </main>
     </div>

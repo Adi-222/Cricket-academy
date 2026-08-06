@@ -45,7 +45,46 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  // TODO: Add role checking for /admin routes
+  // Role-Based Access Control (RBAC)
+  if (user) {
+    const isPortalRoute = request.nextUrl.pathname.startsWith('/portal')
+    const isAdminRoute = request.nextUrl.pathname.startsWith('/admin')
 
+    if (isPortalRoute || isAdminRoute) {
+      // Fetch role from profiles
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single()
+
+      const role = profile?.role || 'client'
+
+      // Admin trying to access portal -> redirect to admin
+      if (isPortalRoute && (role === 'super_admin' || role === 'ops_admin')) {
+        const url = request.nextUrl.clone()
+        url.pathname = '/admin'
+        return NextResponse.redirect(url)
+      }
+
+      // Client trying to access admin -> redirect to portal
+      if (isAdminRoute && role === 'client') {
+        const url = request.nextUrl.clone()
+        url.pathname = '/portal'
+        return NextResponse.redirect(url)
+      }
+
+      // Super Admin specific routes protection
+      const isSuperAdminRoute = request.nextUrl.pathname.startsWith('/admin/content') || 
+                                request.nextUrl.pathname.startsWith('/admin/users')
+      if (isSuperAdminRoute && role !== 'super_admin') {
+        const url = request.nextUrl.clone()
+        url.pathname = '/admin'
+        // optionally append an error message
+        url.searchParams.set('error', 'Unauthorized access')
+        return NextResponse.redirect(url)
+      }
+    }
+  }
   return supabaseResponse
 }

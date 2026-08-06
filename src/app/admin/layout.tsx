@@ -30,9 +30,24 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </div>
         <nav className="p-4 space-y-2 font-heading tracking-wider uppercase text-sm">
           <Link href="/admin"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Dashboard</Button></Link>
-          <Link href="/admin/students"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Students</Button></Link>
-          <Link href="/admin/batches"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Batches</Button></Link>
-          <Link href="/admin/fees"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Fees</Button></Link>
+          
+          {profile?.role === 'super_admin' && (
+            <>
+              <Link href="/admin/students"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Students</Button></Link>
+              <Link href="/admin/batches"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Batches</Button></Link>
+              <Link href="/admin/fees"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Fees</Button></Link>
+              <Link href="/admin/content"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Content</Button></Link>
+              <Link href="/admin/users"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Users</Button></Link>
+            </>
+          )}
+
+          {profile?.role === 'ops_admin' && (
+            <>
+              <Link href="/admin/student-verification"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Student Verification</Button></Link>
+              <Link href="/admin/payment-verification"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Payment Verification</Button></Link>
+              <Link href="/admin/reports"><Button variant="ghost" className="w-full justify-start text-white hover:text-white hover:bg-white/10 rounded-sm">Reports</Button></Link>
+            </>
+          )}
         </nav>
       </aside>
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
